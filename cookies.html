@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cookies y tecnologías de medición | Archipiélago Vivo</title>
+  <meta name="description" content="Información sobre cookies, av_session, parámetros UTM, analítica propia y servicios externos de Archipiélago Vivo." />
+  <link rel="canonical" href="https://archipielagovivo.org/cookies.html" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#ffffff" />
+  <script src="/analytics.js" defer></script>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="Inicio de Archipiélago Vivo">Archipiélago Vivo</a>
+
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">
+      <span class="sr-only">Abrir menú</span>
+      ☰
+    </button>
+
+    <nav id="main-nav" class="main-nav" aria-label="Navegación principal">
+      <a href="/#que-es">Qué es</a>
+      <a href="/mapa.html">Mapa</a>
+      <a href="/agenda.html">Agenda</a>
+      <a href="https://inscripcion.archipielagovivo.org/">Inscripción</a>
+      <a href="https://tv.archipielagovivo.org/">TV</a>
+      <a href="https://chat.whatsapp.com/HhhMOfygVpe51BZMyk6mzS" target="_blank" rel="noopener noreferrer">Comunidad</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="legal-hero">
+      <div class="container narrow">
+        <p class="eyebrow">Privacidad por diseño</p>
+        <h1>Cookies y medición</h1>
+        <p class="legal-lead">Qué tecnologías utiliza el sitio para medir visitas y qué ocurre cuando se cargan servicios externos.</p>
+        <p class="legal-updated">Última actualización: 11 de agosto de 2026</p>
+      </div>
+    </section>
+
+    <section class="section legal-page">
+      <div class="container legal-layout">
+        <aside class="legal-sidebar" aria-label="Índice de esta página">
+          <p class="legal-sidebar-title">En esta página</p>
+          <nav><a href="#resumen">Resumen</a><a href="#propias">Tecnologías propias</a><a href="#sesion">av_session</a><a href="#utm">UTM y atribución</a><a href="#terceros">Servicios externos</a><a href="#control">Control y retirada</a><a href="#cambios">Cambios</a></nav>
+          <div class="legal-related">
+            <p class="legal-sidebar-title">También</p>
+            <a href="/aviso-legal.html">Aviso legal</a>
+            <a href="/privacidad.html">Privacidad</a>
+            <a href="/cookies.html">Cookies y medición</a>
+          </div>
+        </aside>
+
+        <article class="legal-content">
+          <section id="resumen" class="legal-section">
+            <h2>1. Resumen</h2>
+            <p>Archipiélago Vivo ha diseñado su medición propia para funcionar sin cookies y sin almacenamiento persistente en el navegador.</p>
+            <p><strong>Responsable del tratamiento asociado a esta medición:</strong> Juan Alberto González Rodríguez.</p>
+            <div class="legal-note"><strong>Importante:</strong> esta afirmación se refiere al código propio de Archipiélago Vivo. Algunas páginas cargan o enlazan servicios externos que pueden utilizar sus propias cookies o tecnologías similares.</div>
+          </section>
+
+          <section id="propias" class="legal-section">
+            <h2>2. Tecnologías propias</h2>
+            <p>El script de analítica de Archipiélago Vivo:</p>
+            <ul>
+              <li>no crea cookies de analítica;</li>
+              <li>no utiliza <code>localStorage</code> ni <code>sessionStorage</code> para analítica;</li>
+              <li>no genera una huella digital del navegador o dispositivo;</li>
+              <li>no conserva un identificador persistente para reconocer a una persona entre visitas independientes.</li>
+            </ul>
+            <p>La medición registra una carga de página y utiliza un identificador efímero de navegación transportado en la propia URL.</p>
+          </section>
+
+          <section id="sesion" class="legal-section">
+            <h2>3. Identificador <code>av_session</code></h2>
+            <p>Si la URL no contiene un identificador de sesión, el navegador genera aleatoriamente un valor denominado <code>av_session</code>. Ese valor se añade únicamente a enlaces que llevan al dominio <code>archipielagovivo.org</code> o a sus subdominios.</p>
+            <p>El objetivo es poder agrupar de forma aproximada distintas páginas visitadas durante una misma navegación. El identificador no se guarda en una cookie ni en el almacenamiento local del navegador.</p>
+            <p>Los enlaces hacia WhatsApp, redes sociales, GitHub u otros dominios externos no reciben este identificador mediante el sistema de analítica de Archipiélago Vivo.</p>
+            <p>Una recarga o una nueva entrada sin <code>av_session</code> puede generar un identificador diferente. El sistema está diseñado deliberadamente para evitar reconocer de forma persistente al navegador.</p>
+          </section>
+
+          <section id="utm" class="legal-section">
+            <h2>4. Parámetros de campaña y atribución</h2>
+            <p>Si una persona llega mediante una URL que ya contiene parámetros de campaña, estos pueden mantenerse entre páginas de Archipiélago Vivo durante la misma navegación para conocer el origen de la visita.</p>
+            <p>Los parámetros admitidos actualmente son:</p>
+            <p class="legal-code-list"><code>utm_source</code>, <code>utm_medium</code>, <code>utm_campaign</code>, <code>utm_content</code>, <code>utm_term</code>, <code>utm_id</code>, <code>av_location</code>, <code>av_island</code> y <code>av_municipality</code>.</p>
+            <p>Estos parámetros no deben utilizarse para introducir nombres, correos electrónicos, teléfonos u otros datos directamente identificativos.</p>
+          </section>
+
+          <section id="terceros" class="legal-section">
+            <h2>5. Servicios externos</h2>
+            <h3>uMap</h3>
+            <p>La página del mapa integra contenido alojado en <code>umap.openstreetmap.fr</code> mediante un <code>iframe</code>. Al cargar esa integración, el navegador se comunica directamente con el servicio externo. uMap puede aplicar sus propias tecnologías y políticas, que no controla Archipiélago Vivo.</p>
+
+            <h3>Google Forms</h3>
+            <p>Determinados formularios del proyecto utilizan Google Forms. Cuando el formulario se carga o se abre, Google puede utilizar cookies y otras tecnologías necesarias para prestar y proteger su servicio de acuerdo con sus propias políticas.</p>
+
+            <h3>Google Apps Script</h3>
+            <p>La analítica propia envía los eventos definidos por Archipiélago Vivo a una aplicación de Google Apps Script. La petición se realiza sin credenciales del navegador y sin enviar el <em>referrer</em> como campo analítico. Google puede procesar los metadatos técnicos imprescindibles para operar su infraestructura.</p>
+
+            <h3>Enlaces externos</h3>
+            <p>WhatsApp, redes sociales, servicios de vídeo y otras plataformas enlazadas pueden utilizar sus propias cookies o tecnologías cuando decides visitar esos servicios. Sus tratamientos se rigen por sus respectivas políticas.</p>
+          </section>
+
+          <section id="control" class="legal-section">
+            <h2>6. Cómo controlar estas tecnologías</h2>
+            <p>El sistema propio de medición de Archipiélago Vivo no necesita que elimines cookies porque no las utiliza para analítica. Puedes terminar la continuidad de la sesión eliminando de la URL los parámetros <code>av_session</code>, <code>av_entry</code> y, si lo deseas, los parámetros UTM/AV.</p>
+            <p>Para cookies o tecnologías instaladas directamente por servicios externos, puedes utilizar los controles ofrecidos por esos proveedores y la configuración de privacidad de tu navegador.</p>
+            <p>Si detectas una cookie o tecnología no descrita aquí en una página de Archipiélago Vivo, puedes comunicarlo a <a href="mailto:archipielagovivo@riseup.net">archipielagovivo@riseup.net</a> para que podamos revisarla.</p>
+          </section>
+
+          <section id="cambios" class="legal-section">
+            <h2>7. Cambios</h2>
+            <p>Esta página se actualizará cuando cambie el sistema de medición o se incorporen integraciones que modifiquen el uso de cookies o tecnologías similares.</p>
+            <p>Para saber qué datos puede implicar la medición y con qué finalidad se tratan, consulta también la <a href="/privacidad.html">Política de privacidad</a>.</p>
+          </section>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contacto" class="site-footer">
+    <div class="container footer-content">
+      <p><strong>Archipiélago Vivo</strong></p>
+
+      <p><a href="mailto:archipielagovivo@riseup.net">archipielagovivo@riseup.net</a></p>
+
+      <div class="footer-social" aria-label="Redes sociales de Archipiélago Vivo">
+        <a href="https://www.instagram.com/archplgvivo/" target="_blank" rel="me noopener noreferrer">Instagram <span>@archplgvivo</span></a>
+        <a href="https://www.youtube.com/@ArchplgVivo" target="_blank" rel="noopener noreferrer">YouTube <span>@ArchplgVivo</span></a>
+        <a href="https://bsky.app/profile/archplgvivo.bsky.social" target="_blank" rel="me noopener noreferrer">Bluesky <span>@archplgvivo.bsky.social</span></a>
+        <a href="https://www.threads.com/@archplgvivo" target="_blank" rel="noopener noreferrer">Threads <span>@archplgvivo</span></a>
+        <a href="https://x.com/ArchplgVivo" target="_blank" rel="noopener noreferrer">X <span>@ArchplgVivo</span></a>
+        <a href="https://mastodon.art/@archplgvivo" target="_blank" rel="me noopener noreferrer">Mastodon.art <span>@archplgvivo</span></a>
+        <a href="https://pixelfed.art/archplgvivo" target="_blank" rel="me noopener noreferrer">Pixelfed.art <span>@archplgvivo</span></a>
+        <a href="https://github.com/ArchipielagoVivo" target="_blank" rel="noopener noreferrer">GitHub <span>ArchipielagoVivo</span></a>
+      </div>
+
+      <p class="footer-community"><a href="https://chat.whatsapp.com/HhhMOfygVpe51BZMyk6mzS" target="_blank" rel="noopener noreferrer">Comunidad de WhatsApp</a></p>
+
+      <nav class="footer-legal" aria-label="Información legal">
+        <a href="/aviso-legal.html">Aviso legal</a>
+        <a href="/privacidad.html">Privacidad</a>
+        <a href="/cookies.html">Cookies y medición</a>
+      </nav>
+
+      <p>Licencia: pendiente de definir</p>
+      <p>© 2026</p>
+    </div>
+  </footer>
+  <script>
+    const menuButton = document.querySelector(".menu-toggle");
+    const nav = document.querySelector("#main-nav");
+    menuButton.addEventListener("click", () => {
+      const isOpen = menuButton.getAttribute("aria-expanded") === "true";
+      menuButton.setAttribute("aria-expanded", String(!isOpen));
+      nav.classList.toggle("is-open");
+    });
+  </script>
+</body>
+</html>
