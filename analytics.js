@@ -1,4 +1,4 @@
-content = r'''/*
+/*
  * Archipiélago Vivo — analítica first-party común para todo el ecosistema.
  *
  * - Registra un pageview por carga.
@@ -114,7 +114,11 @@ content = r'''/*
 
     try {
       const url = new URL(raw);
-      if (!/^https?:$/.test(url.protocol)) return "";
+
+      if (!/^https?:$/.test(url.protocol)) {
+        return "";
+      }
+
       return `${url.origin}${url.pathname}`.slice(0, MAX_REFERRER_LENGTH);
     } catch (_) {
       return "";
@@ -124,32 +128,53 @@ content = r'''/*
   const currentUrl = new URL(window.location.href);
   const currentParams = currentUrl.searchParams;
   const currentPage = analyticsPath(currentUrl);
-  const statsDisabled = isNoStats(currentParams.get(NOSTATS_PARAM));
+
+  const statsDisabled = isNoStats(
+    currentParams.get(NOSTATS_PARAM)
+  );
 
   const sessionId =
-    cleanSessionId(currentParams.get(SESSION_PARAM)) || generateSessionId();
+    cleanSessionId(currentParams.get(SESSION_PARAM)) ||
+    generateSessionId();
 
   const entryPage =
-    cleanEntry(currentParams.get(ENTRY_PARAM)) || currentPage;
+    cleanEntry(currentParams.get(ENTRY_PARAM)) ||
+    currentPage;
 
   const referrer = normalizedReferrer();
 
   const attribution = {};
+
   for (const key of ATTRIBUTION_PARAMS) {
     const value = currentParams.get(key);
-    if (value) attribution[key] = value;
+
+    if (value) {
+      attribution[key] = value;
+    }
   }
 
   function decorateAnchor(anchor) {
-    if (!anchor || !anchor.getAttribute) return;
+    if (!anchor || !anchor.getAttribute) {
+      return;
+    }
 
     const rawHref = anchor.getAttribute("href");
-    if (!rawHref || rawHref.startsWith("#")) return;
-    if (/^(mailto:|tel:|javascript:|data:)/i.test(rawHref)) return;
+
+    if (!rawHref || rawHref.startsWith("#")) {
+      return;
+    }
+
+    if (/^(mailto:|tel:|javascript:|data:)/i.test(rawHref)) {
+      return;
+    }
 
     let target;
+
     try {
-      target = new URL(rawHref, window.location.href);
+      target = new URL(
+        rawHref,
+        window.location.href
+      );
     } catch (_) {
       return;
     }
@@ -161,40 +186,63 @@ content = r'''/*
       return;
     }
 
-    target.searchParams.set(SESSION_PARAM, sessionId);
-    target.searchParams.set(ENTRY_PARAM, entryPage);
+    target.searchParams.set(
+      SESSION_PARAM,
+      sessionId
+    );
+
+    target.searchParams.set(
+      ENTRY_PARAM,
+      entryPage
+    );
 
     for (const key of ATTRIBUTION_PARAMS) {
       if (attribution[key]) {
-        target.searchParams.set(key, attribution[key]);
+        target.searchParams.set(
+          key,
+          attribution[key]
+        );
       }
     }
 
     if (statsDisabled) {
-      target.searchParams.set(NOSTATS_PARAM, "1");
+      target.searchParams.set(
+        NOSTATS_PARAM,
+        "1"
+      );
     }
 
-    anchor.href = target.toString();
+    anchor.href =
+      target.toString();
   }
 
   function propagateSessionToLinks() {
-    document.querySelectorAll("a[href]").forEach(decorateAnchor);
+    document
+      .querySelectorAll("a[href]")
+      .forEach(decorateAnchor);
   }
 
   document.addEventListener(
     "click",
     (event) => {
       const anchor =
-        event.target && event.target.closest
+        event.target &&
+        event.target.closest
           ? event.target.closest("a[href]")
           : null;
 
-      if (anchor) decorateAnchor(anchor);
+      if (anchor) {
+        decorateAnchor(anchor);
+      }
     },
     true
   );
 
-  function buildPayload(eventName, details = {}) {
+  function buildPayload(
+    eventName,
+    details = {}
+  ) {
+
     const payload = {
       event: String(eventName || "").trim(),
       session_id: sessionId,
@@ -204,68 +252,96 @@ content = r'''/*
 
     for (const key of ATTRIBUTION_PARAMS) {
       if (attribution[key]) {
-        payload[key] = attribution[key];
+        payload[key] =
+          attribution[key];
       }
     }
 
     if (referrer) {
-      payload.referrer = referrer;
+      payload.referrer =
+        referrer;
     }
 
     for (const key of EVENT_DETAIL_FIELDS) {
-      const value = details && details[key];
+      const value =
+        details &&
+        details[key];
 
       if (
         value !== undefined &&
         value !== null &&
         value !== ""
       ) {
-        payload[key] = value;
+        payload[key] =
+          value;
       }
     }
 
     return payload;
   }
 
-  function sendEvent(eventName, details = {}) {
-    if (statsDisabled) return false;
+  function sendEvent(
+    eventName,
+    details = {}
+  ) {
 
-    const event = String(eventName || "").trim();
-    if (!event) return false;
+    if (statsDisabled) {
+      return false;
+    }
 
-    fetch(AV_ANALYTICS_ENDPOINT, {
-      method: "POST",
-      mode: "no-cors",
-      credentials: "omit",
-      cache: "no-store",
-      keepalive: true,
-      referrerPolicy: "no-referrer",
-      headers: {
-        "Content-Type": "text/plain;charset=UTF-8"
-      },
-      body: JSON.stringify(
-        buildPayload(event, details)
-      )
-    }).catch(() => {
-      // La analítica nunca debe bloquear ni alterar la navegación.
+    const event =
+      String(eventName || "")
+        .trim();
+
+    if (!event) {
+      return false;
+    }
+
+    fetch(
+      AV_ANALYTICS_ENDPOINT,
+      {
+        method: "POST",
+        mode: "no-cors",
+        credentials: "omit",
+        cache: "no-store",
+        keepalive: true,
+        referrerPolicy: "no-referrer",
+        headers: {
+          "Content-Type":
+            "text/plain;charset=UTF-8"
+        },
+        body: JSON.stringify(
+          buildPayload(
+            event,
+            details
+          )
+        )
+      }
+    ).catch(() => {
+      // La analítica nunca debe bloquear
+      // ni alterar la navegación.
     });
 
     return true;
   }
 
-  window.AVAnalytics = Object.freeze({
-    track(eventName, details = {}) {
-      return sendEvent(eventName, details);
-    },
+  window.AVAnalytics =
+    Object.freeze({
+      track(
+        eventName,
+        details = {}
+      ) {
+        return sendEvent(
+          eventName,
+          details
+        );
+      },
 
-    disabled: statsDisabled
-  });
+      disabled:
+        statsDisabled
+    });
 
   propagateSessionToLinks();
   sendEvent("pageview");
+
 })();
-'''
-path = "/mnt/data/analytics.js"
-with open(path, "w", encoding="utf-8", newline="\n") as f:
-    f.write(content)
-print(path)
